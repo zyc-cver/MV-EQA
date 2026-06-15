@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mveqa"
+version = "0.1.0"
+description = "Public core evaluation utilities for the MV-EQA paper."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+  {name = "MV-EQA Authors"}
+]
+
+[project.scripts]
+mveqa-evaluate = "mveqa.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
