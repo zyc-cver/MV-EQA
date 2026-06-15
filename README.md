@@ -1,4 +1,4 @@
-# MV-EQA: Exercise Quality Assessment in Monocular Video Streaming
+# MV-EQA: Exercise Quality Assessment in Monocular Video Streaming --
 
 The PyTorch implementation of the core method proposed in **MV-EQA**. The release focuses on the main innovation of the paper: view-aware motion representation and retargeting for exercise quality assessment from monocular video streams.
 
