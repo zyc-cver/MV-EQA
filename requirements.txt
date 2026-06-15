@@ -1,1 +1,10 @@
-# No runtime dependencies beyond Python 3.9+.
+numpy
+scipy
+tensorboardX
+tqdm
+imageio
+opencv-python
+sklearn
+scikit-learn
+scipy
+matplotlib

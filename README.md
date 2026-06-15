@@ -1,77 +1,85 @@
-# MV-EQA
+# MV-EQA: Exercise Quality Assessment in Monocular Video Streaming
 
-Public core release for the accepted MV-EQA paper.
-
-## Links
+We provide PyTorch implementation for our paper as a part of supplementary materials.
 
 - Paper page: https://www.sciencedirect.com/science/article/abs/pii/S0952197626011875
-- Public dataset: https://drive.google.com/file/d/1NrhMDVL_DM8VPP_YGgKVVHCMyyoRfgDQ/view
+- Public data/code archive: https://drive.google.com/file/d/1NrhMDVL_DM8VPP_YGgKVVHCMyyoRfgDQ/view
 
-## About This Release
+## Prerequisites
 
-This repository is a lightweight public release associated with the paper. The complete project was developed in collaboration with an enterprise partner, so partner-specific training code, production integration code, internal data, and model weights are not included.
+- Linux
+- CPU or NVIDIA GPU + CUDA CuDNN
+- Python 3.8+
+- PyTorch 2.0+
 
-The public repository provides:
 
-- A simple reference format for MV-EQA examples.
-- Evaluation utilities for exact match and token-level F1.
-- A command line evaluator for prediction files.
-- Small synthetic examples that document the expected file format.
+## Getting Started
 
-## Repository Layout
+### Install dependencies
 
-```text
-MV-EQA/
-  examples/
-    sample_predictions.jsonl
-    sample_references.jsonl
-  src/
-    mveqa/
-      cli.py
-      dataset.py
-      metrics.py
-  tests/
-    test_dataset.py
-    test_metrics.py
-```
+- Install dependencies
 
-## Installation
+  ```bash
+  pip install -r requirements.txt
+  ```
 
-```bash
-python -m venv .venv
-python -m pip install -e .
-```
 
-The released code has no runtime dependencies beyond Python 3.9+.
+### Run demo examples
 
-## Example Evaluation
+We provide pretrained models and several video demos.
 
-```bash
-python -m mveqa.cli --references examples/sample_references.jsonl --predictions examples/sample_predictions.jsonl
-```
+- Run the model to combine motion, skeleton, view angle from teacher and student videos:
 
-Reference records use JSON Lines:
+  ```bash
+  python inference.py --model_path ./model/pretrained_model.pth -p1 ./demos/1_jump/input_npy_files/learner.npy -p2 ./demos/1_jump/input_npy_files/teacher.npy -h1 720 -w1 720 -h2 720 -w2 720
+  ```
 
-```json
-{"id": "sample-001", "question": "What color is the vehicle?", "answers": ["red car", "red"]}
-```
+  Results will be saved in `./examples`:
 
-Prediction records use JSON Lines:
+<p align="center">
 
-```json
-{"id": "sample-001", "answer": "red car"}
-```
+</p>
 
-## Tests
+You will get three video results, a 2d keypoint visualization for the teacher, a 2d keypoint visualization for the learner, and a retargeting result. The redirection result is made up of the learner's movements, the teacher's skeleton, and perspective.
 
-```bash
-python -m unittest discover -s tests
-```
+<div style="display: flex; justify-content: space-around; align-items: start;">
+  <div>
+    <img src="demos/gifs/learner.gif" width="300">
+    <p style="text-align: center;">learner</p>
+  </div>
+  <div>
+    <img src="demos/gifs/teacher.gif" width="300">
+    <p style="text-align: center;">teacher</p>
+  </div>
+  <div>
+    <img src="demos/gifs/retarget.gif" width="300">
+    <p style="text-align: center;">retarget_result</p>
+  </div>
+</div>
 
-## Citation
 
-Please cite the accepted MV-EQA paper when using this dataset link or public core release. The formal citation will be added after the final bibliographic metadata is available from the publisher.
+- Simulating retargeting in real-time scenes on mixamo synthetic data, and evaluate the degree of shaking:
 
-## License
+  ```bash
+  python shake_evaluate.py --model_path ./model/pretrained_model.pth -g 0
+  ```
+In contrast to previous work on 2d retargeting([_View-invariant Skeleton Action Representation Learning via Motion Retargeting_](https://walker-a11y.github.io/ViA-project/)), our model has higher stabilization performance in real-time fitness scenarios.
+<div style="display: flex; justify-content: space-around; align-items: start;">
+  <div>
+    <img src="demos/gifs/jitter_ViA2024.gif" width="300">
+    <p style="text-align: center;">ViA2024</p>
+  </div>
+  <div>
+    <img src="demos/gifs/jitter_ours.gif" width="300">
+    <p style="text-align: center;">Ours</p>
+  </div>
+</div>
 
-This public core release is provided under the MIT License. Dataset usage is governed by the terms described with the dataset release.
+## Train from scratch
+
+
+- Train the model on GPU:
+
+  ```
+  python train.py -n full -g 0
+  ```

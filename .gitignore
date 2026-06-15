@@ -1,23 +1,17 @@
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.coverage
-htmlcov/
 
 .venv/
 venv/
 env/
 
-build/
-dist/
-*.egg-info/
+.pytest_cache/
+.mypy_cache/
 
-data/
-datasets/
-checkpoints/
-weights/
-outputs/
+examples/
 runs/
+outputs/
+*.log
 
 .DS_Store
 Thumbs.db
