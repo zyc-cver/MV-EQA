@@ -14,13 +14,6 @@ The demo combines motion, skeleton structure, and view-angle information from le
 | --- | --- | --- |
 | <img src="demos/gifs/learner.gif" width="260"> | <img src="demos/gifs/teacher.gif" width="260"> | <img src="demos/gifs/retarget.gif" width="260"> |
 
-### Jitter Comparison
-
-Compared with a previous 2D retargeting method, the released model produces more stable retargeted motion in real-time fitness scenarios.
-
-| ViA2024 | Ours |
-| --- | --- |
-| <img src="demos/gifs/jitter_ViA2024.gif" width="360"> | <img src="demos/gifs/jitter_ours.gif" width="360"> |
 
 ## Prerequisites
 
