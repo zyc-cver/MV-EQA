@@ -66,25 +66,17 @@ Train the model on GPU:
 ```bash
 python train.py -g 0
 ```
-
-## Repository Structure
-
-```text
-MV-EQA/
-  agent/                 training and evaluation agents
-  dataset/               dataset loading utilities
-  demos/                 demo inputs, rendered videos, and GIF summaries
-  functional/            motion processing and visualization utilities
-  mixamo_data/           normalization statistics
-  model/                 network definitions and pretrained weights
-  inference.py           demo inference entry point
-  shake_evaluate.py      jitter evaluation entry point
-  train.py               training entry point
-  visualize.py           visualization helper
-```
-
 ## Citation
 
-If this code is useful for your research, please cite the MV-EQA paper:
+If you find this work useful, please cite:
 
-[MV-EQA: Exercise Quality Assessment in Monocular Video Streaming](https://www.sciencedirect.com/science/article/abs/pii/S0952197626011875)
+```bibtex
+@article{zhang2026exercise,
+  title={Exercise quality assessment in monocular video streaming},
+  author={Zhang, Yongchang and Xu, Boxuan and Lin, Zhaowen and Li, Junjie and Ming, Anlong},
+  journal={Engineering Applications of Artificial Intelligence},
+  volume={177},
+  pages={114905},
+  year={2026},
+  publisher={Elsevier}
+}
